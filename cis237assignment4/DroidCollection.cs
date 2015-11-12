@@ -15,6 +15,12 @@ namespace cis237assignment4
         //Private variable to hold the length of the Collection
         private int lengthOfCollection;
 
+        public int LengthofCollection
+        {
+            get { return lengthOfCollection; }
+            set { lengthOfCollection = value; }            
+        }
+
         //Constructor that takes in the size of the collection.
         //It sets the size of the internal array that will be used.
         //It also sets the length of the collection to zero since nothing is added yet.
@@ -22,8 +28,34 @@ namespace cis237assignment4
         {
             //Make new array for the collection
             droidCollection = new IDroid[sizeOfCollection];
+
+            ProtocolDroid Protocol1 = new ProtocolDroid("Carbonite", "Protocol", "Gold", 10);
+            droidCollection[0] = Protocol1;
+            ProtocolDroid Protocol2 = new ProtocolDroid("Vanadium", "Protocol", "Silver", 3);
+            droidCollection[1] = Protocol2;
+            ProtocolDroid Protocol3 = new ProtocolDroid("Quadranium", "Protocol", "Bronze", 14);
+            droidCollection[2] = Protocol3;
+            UtilityDroid Utility1 = new UtilityDroid("Carbonite", "Utility", "Gold", true, true, true);
+            droidCollection[3] = Utility1;
+            UtilityDroid Utility2 = new UtilityDroid("Vanadium", "Utility", "Silver", true, true, true);
+            droidCollection[4] = Utility2;
+            UtilityDroid Utility3 = new UtilityDroid("Quadranium", "Utility", "Bronze", true, true, true);
+            droidCollection[5] = Utility3;
+            JanitorDroid Janitor1 = new JanitorDroid("Carbonite", "Janitor", "Gold", true, true, true, true, true);
+            droidCollection[6] = Janitor1;
+            JanitorDroid Janitor2 = new JanitorDroid("Vanadium", "Janitor", "Silver", true, true, true, true, true);
+            droidCollection[7] = Janitor2;
+            JanitorDroid Janitor3 = new JanitorDroid("Quadranium", "Janitor", "Bronze", true, true, true, true, true);
+            droidCollection[8] = Janitor3;
+            AstromechDroid Astromech1 = new AstromechDroid("Carbonite", "Astromech", "Gold", true, true, true, true, 5);
+            droidCollection[9] = Astromech1;
+            AstromechDroid Astromech2 = new AstromechDroid("Vanadium", "Astromech", "Silver", true, true, true, true, 24);
+            droidCollection[10] = Astromech2;
+            AstromechDroid Astromech3 = new AstromechDroid("Quadranium", "Astromech", "Bronze", true, true, true, true, 11);
+            droidCollection[11] = Astromech3;
+
             //set length of collection to 0
-            lengthOfCollection = 0;
+            lengthOfCollection = 12;
         }
 
         //The Add method for a Protocol Droid. The parameters passed in match those needed for a protocol droid
@@ -123,6 +155,74 @@ namespace cis237assignment4
 
             //return the completed string
             return returnString;
+        }
+
+        public void SortbyModel()
+        {
+            GenericStack<ProtocolDroid> ProtocolStack = new GenericStack<ProtocolDroid>();
+            GenericStack<UtilityDroid> UtilityStack = new GenericStack<UtilityDroid>();
+            GenericStack<JanitorDroid> JanitorStack = new GenericStack<JanitorDroid>();
+            GenericStack<AstromechDroid> AstromechStack = new GenericStack<AstromechDroid>();
+
+            GenericQueue<Droid> DroidsQueue = new GenericQueue<Droid>();
+
+        
+            foreach (IDroid droid in droidCollection)
+            {
+                if (droid is ProtocolDroid)
+                {
+                    ProtocolStack.Push((ProtocolDroid)droid);
+                }
+                else if (droid is UtilityDroid)
+                {
+                    UtilityStack.Push((UtilityDroid)droid);
+                }
+                else if (droid is JanitorDroid)
+                {
+                    JanitorStack.Push((JanitorDroid)droid);
+                }
+                else if (droid is AstromechDroid)
+                {
+                    AstromechStack.Push((AstromechDroid)droid);
+                }
+            }
+            
+
+            while (ProtocolStack != null)
+            {
+                DroidsQueue.Enqueue(ProtocolStack.Pop());
+            }
+            while (UtilityStack != null)
+            {
+                DroidsQueue.Enqueue(UtilityStack.Pop());
+            }
+            while (JanitorStack != null)
+            {
+                DroidsQueue.Enqueue(JanitorStack.Pop());
+            }
+            while (AstromechStack != null)
+            {
+                DroidsQueue.Enqueue(AstromechStack.Pop());
+
+            }
+
+            while (DroidsQueue != null)
+            {
+                int i =0;
+                droidCollection[i] = DroidsQueue.Dequeue();
+                i++;                
+            }
+        }
+
+        public void SortbyTotalCost()
+        {
+            MergeSort mergeSort = new MergeSort();
+
+            Droid[] droids = new Droid[LengthofCollection];
+
+            mergeSort.sort(droids);         
+                   
+            
         }
     }
 }

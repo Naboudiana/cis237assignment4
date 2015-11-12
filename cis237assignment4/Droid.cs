@@ -24,12 +24,31 @@ namespace cis237assignment4
             set { totalCost = value; }
         }
 
+        public string Model
+        {
+            get { return model; }
+            set { model = value; }
+        }
+
         //Constructor that takes the main 3 parameters shared amongst all 4 types of droids
         public Droid(string Material, string Model, string Color)
         {
             this.material = Material;
             this.model = Model;
             this.color = Color;
+
+        }
+
+        public int CompareTo (object obj)
+        {
+            Droid otherDroid = (Droid)obj;
+
+            decimal thisTotalCost = this.TotalCost;
+
+            decimal otherDroid_TotalCost = otherDroid.TotalCost;
+
+            return thisTotalCost.CompareTo(otherDroid_TotalCost);
+
         }
 
         //Virtual method that can be overridden in the derived classes if needed.
@@ -56,6 +75,7 @@ namespace cis237assignment4
             }
         }
 
+       
         //Abstract method that MUST be overriden in the derived class to calculate the total cost
         public abstract void CalculateTotalCost();
 

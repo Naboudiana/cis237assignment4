@@ -12,7 +12,8 @@ namespace cis237assignment4
         //Private variables unique to this class
         protected int numberOfLanguages;
         protected const decimal COST_PER_LANGUAGE = 25.00m;
-        
+      
+
         //Constructor that takes in the standard parameters, and the number of languages it knows.
         //The base constructor is called to do the work of assigning the standard parameters
         public ProtocolDroid(string Material, string Model, string Color, int NumberOfLanguages) : base(Material, Model, Color)
@@ -36,5 +37,6 @@ namespace cis237assignment4
             return base.ToString() +
                 "Number Of Languages: " + this.numberOfLanguages + Environment.NewLine;
         }
+
     }
 }

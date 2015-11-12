@@ -11,7 +11,7 @@ namespace cis237assignment4
     {
         //Create a class level variable for the droid collection
         IDroidCollection droidCollection;
-
+   
         //Constructor that will take in a droid collection to use
         public UserInterface(IDroidCollection DroidCollection)
         {
@@ -31,7 +31,9 @@ namespace cis237assignment4
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Add a new droid to the system");
             Console.WriteLine("2. Print the list of droids out");
-            Console.WriteLine("3. Exit the program");
+            Console.WriteLine("3. Print the list of droids by MODEL");
+            Console.WriteLine("4. Print the list of droids by TOTAL COST");
+            Console.WriteLine("5. Exit the program");
         }
 
         //Method to get a menu choice
@@ -94,6 +96,15 @@ namespace cis237assignment4
         {
             Console.WriteLine();
             Console.WriteLine(this.droidCollection.GetPrintString());
+            
+        }
+
+        public void PrintDroidListbyModel()
+        {
+            this.droidCollection.SortbyModel();
+            Console.WriteLine();
+            Console.WriteLine(this.droidCollection.GetPrintString());
+
         }
 
         //Display the Model Selection
